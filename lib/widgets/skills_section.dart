@@ -12,8 +12,8 @@ class SkillsSection extends StatelessWidget {
     return ColoredBox(
       color: AppColors.paper,
       child: ContentFrame(
-        top: wide ? 64 : 40,
-        bottom: wide ? 80 : 56,
+        top: wide ? 36 : 28,
+        bottom: wide ? 28 : 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,7 +22,7 @@ class SkillsSection extends StatelessWidget {
               title: 'Skills',
               subtitle: 'State management, architecture, and the delivery tools around them.',
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
             DecoratedBox(
               decoration: const BoxDecoration(
                 border: Border(bottom: BorderSide(color: AppColors.line)),

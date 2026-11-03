@@ -13,7 +13,7 @@ class ExperienceSection extends StatelessWidget {
     return ColoredBox(
       color: AppColors.paper,
       child: ContentFrame(
-        top: desk ? 88 : 64,
+        top: desk ? 48 : 36,
         bottom: 28,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +23,7 @@ class ExperienceSection extends StatelessWidget {
               title: 'Work',
               subtitle: 'Product work for companies in Saudi Arabia, Egypt, and Canada.',
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 24),
             for (final role in Profile.roles) _RoleTile(role: role, desk: desk),
           ],
         ),

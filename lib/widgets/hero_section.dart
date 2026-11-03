@@ -13,83 +13,102 @@ class HeroSection extends StatelessWidget {
     final wide = width >= 1040;
     final nameSize = wide ? 88.0 : (width >= 760 ? 68.0 : 48.0);
 
+    final header = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          Profile.location.toUpperCase(),
+          style: AppType.ui(
+            12,
+            color: AppColors.brassBright,
+            weight: FontWeight.w700,
+            letterSpacing: 1.8,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'Osama',
+          style: AppType.display(
+            nameSize,
+            color: AppColors.cream,
+            letterSpacing: -1.5,
+          ),
+        ),
+        Text(
+          'Abdelaziz',
+          style: AppType.display(
+            nameSize,
+            color: AppColors.cream,
+            letterSpacing: -1.5,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          Profile.role,
+          style: AppType.ui(
+            wide ? 18 : 16,
+            color: AppColors.brassBright,
+            weight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          'iOS, Android, and dashboard products',
+          style: AppType.body(15, color: AppColors.creamMute, height: 1.4),
+        ),
+      ],
+    );
+
     return ContentFrame(
-      top: 48,
-      bottom: 56,
+      top: wide ? 36 : 28,
+      bottom: wide ? 40 : 36,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            Profile.location.toUpperCase(),
-            style: AppType.ui(
-              12,
-              color: AppColors.brassBright,
-              weight: FontWeight.w700,
-              letterSpacing: 1.8,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Osama',
-            style: AppType.display(
-              nameSize,
-              color: AppColors.cream,
-              letterSpacing: -1.5,
-            ),
-          ),
-          Text(
-            'Abdelaziz',
-            style: AppType.display(
-              nameSize,
-              color: AppColors.cream,
-              letterSpacing: -1.5,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            Profile.role,
-            style: AppType.ui(
-              wide ? 18 : 16,
-              color: AppColors.brassBright,
-              weight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            'iOS, Android, and dashboard products',
-            style: AppType.body(15, color: AppColors.creamMute, height: 1.4),
-          ),
-          const SizedBox(height: 32),
           if (wide)
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 7, child: _Summary()),
-                SizedBox(width: 48),
                 Expanded(
-                  flex: 5,
+                  flex: 7,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      header,
+                      const SizedBox(height: 28),
+                      const _Summary(),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 32),
+                const Expanded(
+                  flex: 6,
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: SizedBox(width: 340, child: _PortraitColumn()),
+                    child: SizedBox(width: 460, child: _PortraitColumn()),
                   ),
                 ),
               ],
             )
           else
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(width: 220, child: _Portrait()),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: 16),
+                    const SizedBox(width: 188, child: _Portrait()),
+                  ],
                 ),
-                SizedBox(height: 28),
-                _Summary(),
-                SizedBox(height: 28),
-                _NowLedger(),
+                const SizedBox(height: 24),
+                const _Summary(),
+                const SizedBox(height: 24),
+                const _NowLedger(),
               ],
             ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 28),
           const _Stats(),
         ],
       ),

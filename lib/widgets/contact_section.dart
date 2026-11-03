@@ -13,7 +13,7 @@ class ContactSection extends StatelessWidget {
     return ColoredBox(
       color: AppColors.ink,
       child: ContentFrame(
-        top: wide ? 88 : 64,
+        top: wide ? 40 : 32,
         bottom: 28,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

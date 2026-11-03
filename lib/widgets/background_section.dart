@@ -18,8 +18,8 @@ class BackgroundSection extends StatelessWidget {
     return ColoredBox(
       color: AppColors.cream,
       child: ContentFrame(
-        top: wide ? 80 : 56,
-        bottom: wide ? 88 : 64,
+        top: wide ? 36 : 28,
+        bottom: wide ? 36 : 28,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,7 +28,7 @@ class BackgroundSection extends StatelessWidget {
               title: 'Background',
               subtitle: 'Where I studied, and the languages I work in.',
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: 20),
             if (wide)
               const IntrinsicHeight(
                 child: Row(
