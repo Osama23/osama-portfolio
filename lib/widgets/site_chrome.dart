@@ -165,18 +165,20 @@ class SkillChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = AppType.ui(13, weight: FontWeight.w600);
-    if (onPressed == null) {
-      return Container(
+    final chip = DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.lineStrong),
+      ),
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.lineStrong),
-        ),
         child: Text(label, style: style),
-      );
-    }
+      ),
+    );
+    if (onPressed == null) return chip;
 
     // The page sits inside a SelectionArea, which takes the click on web
-    // unless this control opts out of selection.
+    // unless this control opts out of selection. Button padding stays on the
+    // chip so desktop visual density cannot shrink it.
     return SelectionContainer.disabled(
       child: TextButton(
         onPressed: onPressed,
@@ -190,20 +192,15 @@ class SkillChip extends StatelessWidget {
             return AppColors.ink.withValues(alpha: 0.06);
           }),
           overlayColor: WidgetStateProperty.all(Colors.transparent),
-          padding: WidgetStateProperty.all(
-            const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-          ),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
           minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          shape: WidgetStateProperty.all(
-            const RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.lineStrong),
-            ),
-          ),
+          visualDensity: VisualDensity.standard,
+          shape: WidgetStateProperty.all(const RoundedRectangleBorder()),
           textStyle: WidgetStateProperty.all(style),
           mouseCursor: WidgetStateProperty.all(SystemMouseCursors.click),
         ),
-        child: Text(label, style: style),
+        child: chip,
       ),
     );
   }

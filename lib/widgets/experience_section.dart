@@ -67,6 +67,7 @@ class _RoleTile extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               for (final product in role.products)
                 SkillChip(
