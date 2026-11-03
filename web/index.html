@@ -38,14 +38,26 @@
   </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
-
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    // The previous visit saved the old page. Clear that copy before Flutter starts.
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      var reloadKey = 'oa-cache-reset';
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        return Promise.all(regs.map(function (reg) { return reg.unregister(); }));
+      }).then(function () {
+        if (!window.caches) return;
+        return caches.keys().then(function (keys) {
+          return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+        });
+      }).then(function () {
+        if (navigator.serviceWorker.controller && !sessionStorage.getItem(reloadKey)) {
+          sessionStorage.setItem(reloadKey, '1');
+          location.reload();
+        }
+      });
+    })();
+  </script>
+  <script src="flutter_bootstrap.js?v=oa2" async></script>
 </body>
 </html>

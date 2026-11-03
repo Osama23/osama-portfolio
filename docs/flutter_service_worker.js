@@ -5,27 +5,20 @@ self.addEventListener('install', () => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    (async () => {
-      try {
-        await self.registration.unregister();
-      } catch (e) {
-        console.warn('Failed to unregister the service worker:', e);
-      }
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((key) => caches.delete(key)));
+    await self.clients.claim();
+    const clients = await self.clients.matchAll({type: 'window'});
+    for (const client of clients) {
+      if (!client.url || !('navigate' in client)) continue;
+      const url = new URL(client.url);
+      url.searchParams.set('oa', '2');
+      await client.navigate(url.toString());
+    }
+  })());
+});
 
-      try {
-        const clients = await self.clients.matchAll({
-          type: 'window',
-        });
-        // Reload clients to ensure they are not using the old service worker.
-        clients.forEach((client) => {
-          if (client.url && 'navigate' in client) {
-            client.navigate(client.url);
-          }
-        });
-      } catch (e) {
-        console.warn('Failed to navigate some service worker clients:', e);
-      }
-    })()
-  );
+self.addEventListener('fetch', (event) => {
+  event.respondWith(fetch(event.request, {cache: 'no-store'}));
 });
