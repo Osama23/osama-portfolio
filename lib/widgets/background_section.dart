@@ -30,13 +30,15 @@ class BackgroundSection extends StatelessWidget {
             ),
             const SizedBox(height: 36),
             if (wide)
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: education),
-                  SizedBox(width: 20),
-                  Expanded(child: languages),
-                ],
+              const IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: education),
+                    SizedBox(width: 20),
+                    Expanded(child: languages),
+                  ],
+                ),
               )
             else
               const Column(
@@ -111,8 +113,9 @@ class _LanguagePanel extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _PanelLabel('Languages'),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             _LanguageLine(name: 'Arabic', level: 'Native'),
+            SizedBox(height: 12),
             _LanguageLine(name: 'English', level: 'Fluent'),
           ],
         ),
@@ -148,23 +151,19 @@ class _LanguageLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(name, style: AppType.display(28, letterSpacing: -0.4)),
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            name,
+            style: AppType.display(28, height: 1.15, letterSpacing: -0.4),
           ),
-          Text(
-            level,
-            style: AppType.ui(
-              15,
-              color: AppColors.mute,
-              weight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          level,
+          style: AppType.ui(15, color: AppColors.mute, weight: FontWeight.w600),
+        ),
+      ],
     );
   }
 }
