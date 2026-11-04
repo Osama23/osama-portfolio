@@ -13,7 +13,7 @@ self.addEventListener('activate', (event) => {
     for (const client of clients) {
       if (!client.url || !('navigate' in client)) continue;
       const url = new URL(client.url);
-      url.searchParams.set('oa', '2');
+      url.searchParams.set('oa', '3');
       await client.navigate(url.toString());
     }
   })());
