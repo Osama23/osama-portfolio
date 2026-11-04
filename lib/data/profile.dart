@@ -165,12 +165,12 @@ class Profile {
         'GraphQL',
         'WebSockets',
         'Push notifications',
-        'Testing',
+        'Flutter testing',
       ],
     ),
     SkillGroup(
       title: 'Delivery',
-      items: ['Shorebird', 'GitHub Actions', 'Fastlane', 'Codemagic', 'CI/CD'],
+      items: ['CI/CD', 'Shorebird', 'GitHub Actions', 'Fastlane', 'Codemagic'],
     ),
     SkillGroup(title: 'Version control', items: ['Git', 'GitHub']),
   ];
