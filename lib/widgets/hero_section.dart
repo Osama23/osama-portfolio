@@ -59,71 +59,30 @@ class HeroSection extends StatelessWidget {
       ],
     );
 
+    final portraitWidth = wide ? 280.0 : (width >= 760 ? 168.0 : 132.0);
+
     return ContentFrame(
       top: wide ? 36 : 28,
       bottom: wide ? 40 : 36,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (wide)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      header,
-                      const SizedBox(height: 28),
-                      const _Summary(),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 32),
-                const Expanded(
-                  flex: 6,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: SizedBox(width: 460, child: _PortraitColumn()),
-                  ),
-                ),
-              ],
-            )
-          else
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: header),
-                    const SizedBox(width: 16),
-                    const SizedBox(width: 188, child: _Portrait()),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                const _Summary(),
-                const SizedBox(height: 24),
-                const _NowLedger(),
-              ],
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: header),
+              const SizedBox(width: 20),
+              SizedBox(width: portraitWidth, child: const _Portrait()),
+            ],
+          ),
+          const SizedBox(height: 28),
+          const _Summary(),
+          const SizedBox(height: 24),
+          const _NowLedger(),
           const SizedBox(height: 28),
           const _Stats(),
         ],
       ),
-    );
-  }
-}
-
-class _PortraitColumn extends StatelessWidget {
-  const _PortraitColumn();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [_Portrait(), SizedBox(height: 16), _NowLedger()],
     );
   }
 }
