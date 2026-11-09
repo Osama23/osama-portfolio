@@ -65,9 +65,10 @@ class _InfoPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.paper,
-        border: Border.fromBorderSide(BorderSide(color: AppColors.line)),
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        border: const Border.fromBorderSide(BorderSide(color: AppColors.line)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -103,9 +104,10 @@ class _LanguagePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.paper,
-        border: Border.fromBorderSide(BorderSide(color: AppColors.line)),
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        border: const Border.fromBorderSide(BorderSide(color: AppColors.line)),
       ),
       child: const Padding(
         padding: EdgeInsets.all(24),

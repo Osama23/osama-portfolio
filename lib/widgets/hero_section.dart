@@ -98,44 +98,35 @@ class _Portrait extends StatelessWidget {
       container: true,
       child: AspectRatio(
         aspectRatio: 1,
-        child: Stack(
-          children: [
-            const Positioned.fill(
-              child: Padding(
-                padding: EdgeInsets.only(top: 14, left: 14),
-                child: ColoredBox(color: AppColors.brassBright),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppRadius.photo),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.brassBright.withValues(alpha: 0.45),
+                offset: const Offset(10, 12),
+                blurRadius: 0,
               ),
-            ),
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 14, bottom: 14),
-                child: ColoredBox(
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.photo),
+            child: Image.asset(
+              Profile.portraitAsset,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return ColoredBox(
                   color: AppColors.paper,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Image.asset(
-                      Profile.portraitAsset,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return ColoredBox(
-                          color: AppColors.paper,
-                          child: Center(
-                            child: Text(
-                              'OA',
-                              style: AppType.display(
-                                42,
-                                color: AppColors.brass,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
+                  child: Center(
+                    child: Text(
+                      'OA',
+                      style: AppType.display(42, color: AppColors.brass),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -191,6 +182,7 @@ class _NowLedger extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.inkRaised,
+        borderRadius: BorderRadius.circular(AppRadius.card),
         border: Border.all(color: const Color(0x22F6F1E8)),
       ),
       child: Padding(

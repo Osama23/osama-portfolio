@@ -16,6 +16,15 @@ class AppColors {
   static const mute = Color(0xFF5E564E);
 }
 
+class AppRadius {
+  const AppRadius._();
+
+  static const chip = 999.0;
+  static const control = 14.0;
+  static const card = 20.0;
+  static const photo = 28.0;
+}
+
 class PortfolioWidth {
   const PortfolioWidth._();
 

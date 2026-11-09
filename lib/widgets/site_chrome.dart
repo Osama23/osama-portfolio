@@ -145,7 +145,10 @@ class PortfolioButton extends StatelessWidget {
         minimumSize: WidgetStateProperty.all(const Size(0, 48)),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(side: BorderSide(color: borderColor)),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.chip),
+            side: BorderSide(color: borderColor),
+          ),
         ),
         textStyle: WidgetStateProperty.all(
           AppType.ui(14, weight: FontWeight.w700, letterSpacing: 0.3),
@@ -167,10 +170,12 @@ class SkillChip extends StatelessWidget {
     final style = AppType.ui(13, weight: FontWeight.w600);
     final chip = DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.lineStrong),
+        color: AppColors.cream,
+        borderRadius: BorderRadius.circular(AppRadius.chip),
+        border: Border.all(color: AppColors.line),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         child: Text(label, style: style),
       ),
     );
@@ -196,7 +201,11 @@ class SkillChip extends StatelessWidget {
           minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           visualDensity: VisualDensity.standard,
-          shape: WidgetStateProperty.all(const RoundedRectangleBorder()),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppRadius.chip),
+            ),
+          ),
           textStyle: WidgetStateProperty.all(style),
           mouseCursor: WidgetStateProperty.all(SystemMouseCursors.click),
         ),
@@ -373,8 +382,9 @@ class _BrandButton extends StatelessWidget {
         minimumSize: const Size(40, 40),
         padding: EdgeInsets.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: const RoundedRectangleBorder(
-          side: BorderSide(color: AppColors.brass, width: 1.2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.control),
+          side: const BorderSide(color: AppColors.brass, width: 1.2),
         ),
       ),
       child: Text(
@@ -402,23 +412,15 @@ class _NavButton extends StatelessWidget {
       onPressed: onPressed,
       style: TextButton.styleFrom(
         foregroundColor: active ? AppColors.brass : AppColors.ink,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        backgroundColor: active
+            ? AppColors.brass.withValues(alpha: 0.1)
+            : Colors.transparent,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         minimumSize: const Size(0, 40),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: const StadiumBorder(),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(label, style: AppType.ui(14, weight: FontWeight.w700)),
-          const SizedBox(height: 4),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            height: 1.5,
-            width: active ? 18 : 0,
-            color: AppColors.brass,
-          ),
-        ],
-      ),
+      child: Text(label, style: AppType.ui(14, weight: FontWeight.w700)),
     );
   }
 }

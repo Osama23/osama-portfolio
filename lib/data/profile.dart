@@ -166,6 +166,7 @@ class Profile {
         'WebSockets',
         'Push notifications',
         'Flutter testing',
+        'Payment integration',
       ],
     ),
     SkillGroup(
